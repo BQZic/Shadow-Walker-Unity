@@ -76,4 +76,9 @@ public class Player : MonoBehaviour
     {
         hp -= damage;
     }
+
+    public float GetHP()
+    {
+        return hp;
+    }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1489871028}
   m_Layer: 0
   m_Name: Light Ball
-  m_TagString: Untagged
+  m_TagString: LightBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,10 +86,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f4c5f01740f3749a8901b6886a9d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLight: 5
-  maxLight: 10
+  currentLight: 0
+  maxLight: 3
   minLight: 0
-  lightStep: 2
+  lightStep: 1
   speed: 3
 --- !u!58 &1489871028
 CircleCollider2D:

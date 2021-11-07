@@ -27,7 +27,6 @@ public class Bracelet : MonoBehaviour
 
     private void LongClick(int clicknum)
     {
-        // left click
         if (Input.GetMouseButtonDown(clicknum))
         {
             _totalDownTime = 0;
@@ -45,7 +44,7 @@ public class Bracelet : MonoBehaviour
             if (clicknum == 0)
                 CreateLightBall(Time2LightLevel());
             else 
-                AbsorbLight();
+                AbsorbLight(Time2LightLevel());
             _totalDownTime = 0f;
             _isClicking = false;
         }
@@ -62,11 +61,19 @@ public class Bracelet : MonoBehaviour
         else
             return 3;
     }
-
+    
+    // TODO：最好在蓄力的时候能有个蓄力条？这样可以更直观地看到到底续了多久
     private void CreateLightBall(int level)
     {
         // TODO: need to confirm
         if (level == 0) return;
+        
+        // Make sure player has HP to create a new ball
+        if (_player.GetHP() - level * 10 <= 0)
+        {
+            Debug.Log("Player cannot create new light ball due to HP limit");
+            return;
+        }
         
         _player.TakeDamage(level * 10);
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -74,8 +81,9 @@ public class Bracelet : MonoBehaviour
         LightBall.Create(null, _transform.parent.position, level, worldPosition);
     }
 
-    private void AbsorbLight()
+    private void AbsorbLight(int level)
     {
+        if (level == 0) return;
         
     }
 }

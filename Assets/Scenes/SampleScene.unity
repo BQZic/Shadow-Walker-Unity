@@ -4445,6 +4445,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1529385327}
     m_Modifications:
+    - target: {fileID: 1489871028, guid: 6433b527f00af934db77492fd2613e0f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1829377158834705371, guid: 6433b527f00af934db77492fd2613e0f, type: 3}
       propertyPath: m_Name
       value: Light Ball

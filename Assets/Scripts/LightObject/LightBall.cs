@@ -41,6 +41,8 @@ namespace LightObject
             _transform = GetComponent<Transform>();
             _collider = GetComponent<CircleCollider2D>();
             _attachedOnSth = _transform.parent != null;
+
+            if (_attachedOnSth) _collider.enabled = false;
         }
 
         private void Update()
