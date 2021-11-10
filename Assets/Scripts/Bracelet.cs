@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using LightObject;
 using Unity.Mathematics;
 using UnityEngine;
+using Priority_Queue;
 
 public class Bracelet : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class Bracelet : MonoBehaviour
 
     [SerializeField] private float maxRange = 0.4f;
 
-    private List<LightBall> _priority = new List<LightBall>();
+    // private List<LightBall> _priority = new List<LightBall>();
+    private SimplePriorityQueue<LightBall> _priority = new SimplePriorityQueue<LightBall>();
 
     private void Start()
     {
@@ -128,9 +130,10 @@ public class Bracelet : MonoBehaviour
         {
             if (hitCollider.gameObject.CompareTag("LightBall"))
             {
-                // float dist = Vector2.Distance(hitCollider.transform.position, worldPosition);
-                _priority.Add(hitCollider.gameObject.GetComponent<LightBall>());
-                //nearbyLightBalls.Add(hitCollider.gameObject.GetComponent<LightBall>());
+                float dist = Vector2.Distance(hitCollider.transform.position, worldPosition);
+                _priority.Enqueue(hitCollider.gameObject.GetComponent<LightBall>(), dist);
+                // _priority.Add(hitCollider.gameObject.GetComponent<LightBall>());
+                // nearbyLightBalls.Add(hitCollider.gameObject.GetComponent<LightBall>());
             }
         }
     }
@@ -139,31 +142,46 @@ public class Bracelet : MonoBehaviour
     {
         if (_priority.Count == 0)
         {
-            print("No lights nearby");
+            Debug.Log("No Lights Nearby");
             return;
         }
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        worldPosition.z += 10;
+
+        LightBall target = _priority.First;
+        if (target.GetCurrentLight() - amount <= 0)
+            _priority.Dequeue();
         
-        LightBall target = null;
-        float minDist = 99999f;
-        foreach (LightBall lb in _priority)
-        {
-            float dist = Vector2.Distance(lb.transform.position, worldPosition);
-            if (dist < minDist)
-            {
-                target = lb;
-                minDist = dist;
-            }
-        }
-        // TODO: ADD PLAYER HP HERE
-        if (target != null)
-        {
-            if (target.GetCurrentLight() - amount <= 0)
-            {
-                _priority.Remove(target);
-            }
-            target.LoseLight(amount);
-        }
+        target.LoseLight(amount);
     }
+    
+    // private void AbsorbLight(int amount)
+    // {
+    //     if (_priority.Count == 0)
+    //     {
+    //         print("No lights nearby");
+    //         return;
+    //     }
+    //     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //     worldPosition.z += 10;
+    //     
+    //     LightBall target = null;
+    //     float minDist = 99999f;
+    //     foreach (LightBall lb in _priority)
+    //     {
+    //         float dist = Vector2.Distance(lb.transform.position, worldPosition);
+    //         if (dist < minDist)
+    //         {
+    //             target = lb;
+    //             minDist = dist;
+    //         }
+    //     }
+    //     // TODO: ADD PLAYER HP HERE
+    //     if (target != null)
+    //     {
+    //         if (target.GetCurrentLight() - amount <= 0)
+    //         {
+    //             _priority.Remove(target);
+    //         }
+    //         target.LoseLight(amount);
+    //     }
+    // }
 }
