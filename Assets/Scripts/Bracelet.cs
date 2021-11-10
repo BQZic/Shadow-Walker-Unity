@@ -64,6 +64,7 @@ public class Bracelet : MonoBehaviour
             _isClicking = true;
             UpdateNearbyLightBalls();
         }
+        
         // NEED TO CHANGE
         if (_isClicking && Input.GetMouseButton(1))
         {
