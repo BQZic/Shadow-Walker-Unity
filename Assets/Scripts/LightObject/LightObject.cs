@@ -10,17 +10,7 @@ namespace LightObject
         [SerializeField] protected int minLight = 0;
         [SerializeField] protected int lightStep = 1;
 
-        public void GainLight(int lightAmount)
-        {
-            if (currentLight + lightAmount > maxLight) return;
-            currentLight += lightAmount;
-        }
-
-        public void LoseLight(int lightAmount)
-        {
-            if (currentLight - lightAmount < minLight) return;
-            currentLight -= lightAmount;
-        }
+        
         
         public int GetMaxLight()
         {

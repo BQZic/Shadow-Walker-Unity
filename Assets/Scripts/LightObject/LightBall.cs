@@ -50,6 +50,8 @@ namespace LightObject
             if (!_attachedOnSth)
                 _transform.position = Vector3.MoveTowards(_transform.position, 
                     _destination, Time.deltaTime * speed);
+            
+            if (currentLight <= 0) Destroy(gameObject);
         }
 
         private void Setup(int level, Vector3 destination)
@@ -62,6 +64,25 @@ namespace LightObject
             currentLight = level;
         }
         
+        public void GainLight(int lightAmount)
+        {
+            if (currentLight + lightAmount > maxLight) return;
+            currentLight += lightAmount;
+            UpdateUI();
+        }
+
+        public void LoseLight(int lightAmount)
+        {
+            if (currentLight - lightAmount < minLight) return;
+            currentLight -= lightAmount;
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            _light2D.pointLightOuterRadius = _level2Radius[currentLight];
+            _collider.radius = _level2Radius[currentLight];
+        }
     }
 }
 

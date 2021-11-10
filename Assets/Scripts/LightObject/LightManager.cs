@@ -34,8 +34,7 @@ namespace LightObject
                 to.GetCurrentLight() - to.GetMinLight());
             var tmp2 = math.min(from.GetLightStep(), to.GetLightStep());
             var lightAmount = math.min(tmp1, tmp2);
-            from.LoseLight(lightAmount);
-            to.GainLight(lightAmount);
+            
         }
     }
 }
