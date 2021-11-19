@@ -1,87 +1,64 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using CodeMonkey.Utils;
+using Unity.Mathematics;
 
 namespace LightObject
 {
     public class LightBall : LightObject
     {
-        public static void Create(Transform parent, Vector3 localPosition, int level, 
-            Vector3 destination)
-        {
-            Transform lightBallTransform = Instantiate(GameAssets.i.pfLightBall, 
-                parent);
-            lightBallTransform.localPosition = localPosition;
-            
-            lightBallTransform.GetComponent<LightBall>().Setup(level, destination);
-            
-            // after 5 seconds destroy it - for testing purpose
-            // Destroy(lightBallTransform.gameObject, 5f);
-        }
+        public float moveSpeed = 1.0f;
+        
+        private Vector3 _shootDir;
+        private Vector3 _startPos;
+        private Vector3 _endPos;
+        private float _maxRange;
+        
+        private int _lightBallLevel;
+        private Light2D _light2D;
 
-        // for testing purpose - may need to change
-        private readonly Dictionary<int, float> _level2Radius = new 
-            Dictionary<int, float>() {
-            {0, 0}, {1, 0.35f}, {2, 0.65f}, {3, 1f}
+        public Dictionary<int, float> LevelToRadius = new Dictionary<int, float>()
+        {
+            {0, 0}, {1, 0.1f}, {2, 0.2f}, {3, 0.3f}
         };
 
-        private bool _attachedOnSth;
-        private Vector3 _destination;
-        private Light2D _light2D;
-        private Transform _transform;
-        private CircleCollider2D _collider;
-        
-        [Header("Light ball properties")]
-        [SerializeField] private float speed = 1;
-
-        private void Awake()
+        private void Start()
         {
             _light2D = GetComponent<Light2D>();
-            _transform = GetComponent<Transform>();
-            _collider = GetComponent<CircleCollider2D>();
-            _attachedOnSth = _transform.parent != null;
-
-            if (_attachedOnSth) _collider.enabled = false;
         }
 
         private void Update()
         {
-            if (!_attachedOnSth)
-                _transform.position = Vector3.MoveTowards(_transform.position, 
-                    _destination, Time.deltaTime * speed);
-            
-            if (currentLight <= 0) Destroy(gameObject);
+            if ((transform.position - _startPos).sqrMagnitude <= _maxRange * _maxRange)
+                transform.position += _shootDir * moveSpeed * Time.deltaTime;
         }
 
-        private void Setup(int level, Vector3 destination)
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            _light2D.pointLightOuterRadius = _level2Radius[level];
-            _destination = destination;
-            _collider.radius = _level2Radius[level];
-            
-            // TODO: 现在假设光量直接和光球等级挂钩，需要后续确认
-            currentLight = level;
+            Player player = other.GetComponent<Player>();
+            if (player != null)
+            {
+                player.AddHP(_lightBallLevel * 10);
+                Destroy(gameObject);
+            }
         }
         
-        public void GainLight(int lightAmount)
+        public void SetUp(Vector3 shootDir, int lightBallLevel, Vector3 startPos, Vector3 endPos, float range)
         {
-            if (currentLight + lightAmount > maxLight) return;
-            currentLight += lightAmount;
-            UpdateUI();
-        }
-
-        public void LoseLight(int lightAmount)
-        {
-            if (currentLight - lightAmount < minLight) return;
-            currentLight -= lightAmount;
-            UpdateUI();
-        }
-
-        private void UpdateUI()
-        {
-            _light2D.pointLightOuterRadius = _level2Radius[currentLight];
-            _collider.radius = _level2Radius[currentLight];
+            _shootDir = shootDir;
+            transform.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVectorFloat(shootDir));
+            
+            _startPos = startPos;
+            _endPos = endPos;
+            _maxRange = Math.Min(range, (_startPos - _endPos).magnitude);
+            
+             _lightBallLevel = lightBallLevel;
+            _light2D = GetComponent<Light2D>();
+            _light2D.pointLightOuterRadius = LevelToRadius[_lightBallLevel];
         }
     }
 }

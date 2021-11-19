@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float jumpingHeight = 8f;
     public float hp = 100;
     public float minusHp = 0.01f;
-    public float lightBallLevel = 1f;
+    //public float lightBallLevel = 1f;
     private int jumpNum = 0;
     private int Light = 0;
     private float xVelocity;
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
         return hp;
     }
 
-    public void AddHP()
+    public void AddHP(int lightBallLevel)
     {
         hp += lightBallLevel;
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8341429535394724873
+--- !u!1 &1010336202903800
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8341429535394724874}
-  - component: {fileID: 7257692794238650389}
+  - component: {fileID: 4240258222200348}
+  - component: {fileID: 114165315123428144}
   m_Layer: 0
-  m_Name: GameAssets
+  m_Name: CodeMonkeyAssets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8341429535394724874
+--- !u!4 &4240258222200348
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8341429535394724873}
+  m_GameObject: {fileID: 1010336202903800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0487247, y: -1.6646063, z: -4.397912}
+  m_LocalPosition: {x: 991.20996, y: 137.51582, z: 149.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7257692794238650389
+--- !u!114 &114165315123428144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8341429535394724873}
+  m_GameObject: {fileID: 1010336202903800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a87cec9a61a4c5f83cd00958a416653, type: 3}
+  m_Script: {fileID: 11500000, guid: eda7ff5f6e8175c4da119ea9ed256f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfLightBall: {fileID: 3867707268803294847, guid: e542e2fa373c1604098f0cea71f432e2, type: 3}
+  s_White: {fileID: 21300000, guid: 170577bce7cbda144b82578f81308d23, type: 3}
+  s_Circle: {fileID: 21300000, guid: a0e35f6b808bb7447826cc6c69ffe448, type: 3}
+  m_White: {fileID: 2100000, guid: 7d5e8e2c082a4c44a9abd7d650cf0a15, type: 2}
