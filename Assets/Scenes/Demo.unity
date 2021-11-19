@@ -1182,6 +1182,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1651860869, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1528438384784898816, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1228,6 +1232,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1528438384784898820, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528438384784898822, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2516001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528438384784898822, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
+      propertyPath: m_Size.y
+      value: 0.29016423
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528438384784898822, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.013944149
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528438384784898822, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0003361702
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528438384784898823, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1528438384784898843, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}

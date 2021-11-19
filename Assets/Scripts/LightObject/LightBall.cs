@@ -20,9 +20,9 @@ namespace LightObject
         private int _lightBallLevel;
         private Light2D _light2D;
 
-        public Dictionary<int, float> LevelToRadius = new Dictionary<int, float>()
+        private Dictionary<int, float> _level2Radius = new Dictionary<int, float>()
         {
-            {0, 0}, {1, 0.1f}, {2, 0.2f}, {3, 0.3f}
+            {0, 0}, {1, 0.2f}, {2, 0.4f}, {3, 0.6f}
         };
 
         private void Start()
@@ -58,7 +58,7 @@ namespace LightObject
             
              _lightBallLevel = lightBallLevel;
             _light2D = GetComponent<Light2D>();
-            _light2D.pointLightOuterRadius = LevelToRadius[_lightBallLevel];
+            _light2D.pointLightOuterRadius = _level2Radius[_lightBallLevel];
         }
     }
 }

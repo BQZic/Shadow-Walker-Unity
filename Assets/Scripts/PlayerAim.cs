@@ -15,7 +15,7 @@ public class PlayerAim : MonoBehaviour
         public float MaxShootRange;
     }
 
-    public float maxRange = 1.5f;
+    public float maxShootRange = 1.5f;
     
     private Transform _aimTransform;
     private Transform _fireStartPosition;
@@ -77,7 +77,7 @@ public class PlayerAim : MonoBehaviour
                 StartPosition = _fireStartPosition.position,
                 ShootPosition = mousePosition,
                 LightBallLevel = Time2LightLevel(),
-                MaxShootRange = maxRange
+                MaxShootRange = maxShootRange
             });
             
             print("Pressed left mouse button for " + _totalDownTime + "s");
@@ -87,6 +87,11 @@ public class PlayerAim : MonoBehaviour
             _isClicking = false;
             _totalDownTime = 0f;
         }
+    }
+
+    private void HandleAbsorbing()
+    {
+        
     }
 
     private int Time2LightLevel()
