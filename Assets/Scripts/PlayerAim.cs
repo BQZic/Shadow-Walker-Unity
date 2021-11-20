@@ -91,7 +91,37 @@ public class PlayerAim : MonoBehaviour
 
     private void HandleAbsorbing()
     {
-        
+        if (!_isClicking && Input.GetMouseButtonDown(1))
+        {
+            _totalDownTime = 0f;
+            _isClicking = true;
+        }
+
+        if (_isClicking && Input.GetMouseButton(1))
+        {
+            _totalDownTime += Time.deltaTime;
+            HandleAbsorbingHelper();
+        }
+
+        if (_isClicking && Input.GetMouseButtonUp(1))
+        {
+            _isClicking = false;
+        }
+    }
+
+    private void HandleAbsorbingHelper()
+    {
+        StartCoroutine(AbsorbLightNumerator());
+    }
+    
+    private IEnumerator AbsorbLightNumerator()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            if (!_isClicking)
+                break;
+        }  
     }
 
     private int Time2LightLevel()

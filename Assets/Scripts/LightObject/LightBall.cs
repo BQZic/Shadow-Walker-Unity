@@ -20,7 +20,7 @@ namespace LightObject
         private int _lightBallLevel;
         private Light2D _light2D;
 
-        private Dictionary<int, float> _level2Radius = new Dictionary<int, float>()
+        private readonly Dictionary<int, float> _level2Radius = new Dictionary<int, float>()
         {
             {0, 0}, {1, 0.2f}, {2, 0.4f}, {3, 0.6f}
         };
