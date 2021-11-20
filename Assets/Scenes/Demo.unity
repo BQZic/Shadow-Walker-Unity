@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -425,6 +426,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655f872289e1c2d45bebc8a5f5547df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1196320208}
+  smoothSpeed: 50
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &788123433
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +497,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b36e46ef6af0a2448b343f2bc034c679, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -726,6 +742,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d05555aa2addcbb47a9d3b5adea45f6f, type: 3}
+--- !u!4 &1196320208 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1528438384784898820, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
+  m_PrefabInstance: {fileID: 1528438383825939051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1400548497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,10 +1203,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1651860869, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1528438384784898816, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1232,26 +1249,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1528438384784898820, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1528438384784898822, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
-      propertyPath: m_Size.x
-      value: 0.2516001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1528438384784898822, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
-      propertyPath: m_Size.y
-      value: 0.29016423
-      objectReference: {fileID: 0}
-    - target: {fileID: 1528438384784898822, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.013944149
-      objectReference: {fileID: 0}
-    - target: {fileID: 1528438384784898822, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.0003361702
-      objectReference: {fileID: 0}
-    - target: {fileID: 1528438384784898823, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}
-      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1528438384784898843, guid: cad859eec09a163499a688bfa05b0cbf, type: 3}

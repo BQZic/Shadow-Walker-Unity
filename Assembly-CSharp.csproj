@@ -93,6 +93,7 @@
      <Compile Include="Assets\Scripts\Priority Queue\SimplePriorityQueue.cs" />
      <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
+     <Compile Include="Assets\Scripts\CameraFollower.cs" />
      <None Include="Assets\CodeMonkey\README.txt" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Apps/Unity 2020.3.21f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
