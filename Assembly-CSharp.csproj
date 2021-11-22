@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\CodeMonkey\Utils\Button_UI.cs" />
-     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\World_Mesh.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\IFixedSizePriorityQueue.cs" />
      <Compile Include="Assets\Scripts\LightObject\LightBall.cs" />
@@ -66,24 +66,24 @@
      <Compile Include="Assets\Scripts\Priority Queue\StablePriorityQueue.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\IPriorityQueue.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionUpdater.cs" />
-     <Compile Include="Assets\Scripts\Testing.cs" />
+     <Compile Include="Assets\Scripts\old\Testing.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
-     <Compile Include="Assets\Scripts\Bracelet.cs" />
+     <Compile Include="Assets\Scripts\old\Bracelet.cs" />
      <Compile Include="Assets\Scripts\CameraFollower.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_Sprite.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\Properties\AssemblyInfo.cs" />
      <Compile Include="Assets\Scripts\LightObject\LightManager.cs" />
-     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerShoot.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\FastPriorityQueueNode.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_TextComplex.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\Button_Sprite.cs" />
      <Compile Include="Assets\CodeMonkey\Assets.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\GenericPriorityQueueNode.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\World_Sprite.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UtilsClass.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\PositionRendererSorter.cs" />
-     <Compile Include="Assets\Scripts\PlayerAim.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAim.cs" />
      <Compile Include="Assets\Scripts\Platform\WaypointFollower.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\GenericPriorityQueue.cs" />

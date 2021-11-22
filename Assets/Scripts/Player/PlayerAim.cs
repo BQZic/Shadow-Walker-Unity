@@ -40,6 +40,7 @@ public class PlayerAim : MonoBehaviour
     {
         HandleAiming();
         HandleShooting();
+        HandleAbsorbing();
     }
 
     private void HandleAiming()
@@ -93,6 +94,12 @@ public class PlayerAim : MonoBehaviour
     {
         if (!_isClicking && Input.GetMouseButtonDown(1))
         {
+            Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+            if ((transform.position - mousePosition).sqrMagnitude > maxShootRange * maxShootRange)
+            {
+                Debug.Log("Not in range");
+                return;
+            }
             _totalDownTime = 0f;
             _isClicking = true;
         }
