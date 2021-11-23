@@ -361,22 +361,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1580630321, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580630321, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 719049477
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895427114804363313, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.434
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895427114804363313, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.08
-      objectReference: {fileID: 0}
     - target: {fileID: 8895427115242208038, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -424,14 +408,6 @@ PrefabInstance:
     - target: {fileID: 8895427115242208039, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
       propertyPath: m_Name
       value: MovingPlatform
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895427115476834543, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.434
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895427115476834543, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8d425cf73d89204dacf9d1d22529e0b, type: 3}
