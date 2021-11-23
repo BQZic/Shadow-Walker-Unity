@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Damage
   - LightBall
+  - Light
   layers:
   - Default
   - TransparentFX
@@ -14,10 +15,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Background
+  - Foreground
+  - Ground
   - 
   - 
   - 
@@ -43,4 +44,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4082089879
+    locked: 0
+  - name: Ground
+    uniqueID: 719049477
+    locked: 0
+  - name: Player
+    uniqueID: 2102557841
+    locked: 0
+  - name: UI
+    uniqueID: 2353114551
     locked: 0
