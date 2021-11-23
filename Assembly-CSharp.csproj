@@ -806,6 +806,12 @@
  <Reference Include="Unity.2D.SpriteShape.Runtime">
  <HintPath>D:/Projects/LightDemo/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
  </Reference>
+ <Reference Include="com.unity.cinemachine.editor">
+ <HintPath>D:/Projects/LightDemo/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Cinemachine">
+ <HintPath>D:/Projects/LightDemo/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
