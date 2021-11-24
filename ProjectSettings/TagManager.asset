@@ -8,6 +8,7 @@ TagManager:
   - Damage
   - LightBall
   - Light
+  - WalkablePlatform
   layers:
   - Default
   - TransparentFX

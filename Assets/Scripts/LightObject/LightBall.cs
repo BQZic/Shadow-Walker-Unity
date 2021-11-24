@@ -17,7 +17,6 @@ namespace LightObject
         private Vector3 _endPos;
         private float _maxRange;
         
-        private int _lightBallLevel;
         private Light2D _light2D;
 
         private readonly Dictionary<int, float> _level2Radius = new Dictionary<int, float>()
@@ -36,13 +35,19 @@ namespace LightObject
                 transform.position += _shootDir * moveSpeed * Time.deltaTime;
         }
 
+        private void LateUpdate()
+        {
+            if (currentLight <= 0) Destroy(gameObject);
+            _light2D.pointLightOuterRadius = _level2Radius[currentLight];
+        }
+
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                player.AddHP(_lightBallLevel * 10);
+                player.AddHP(currentLight * 10);
                 Destroy(gameObject);
             }
         }
@@ -56,10 +61,12 @@ namespace LightObject
             _endPos = endPos;
             _maxRange = Math.Min(range, (_startPos - _endPos).magnitude);
             
-             _lightBallLevel = lightBallLevel;
+            currentLight = lightBallLevel;
             _light2D = GetComponent<Light2D>();
-            _light2D.pointLightOuterRadius = _level2Radius[_lightBallLevel];
+            _light2D.pointLightOuterRadius = _level2Radius[currentLight];
         }
+
+
     }
 }
 

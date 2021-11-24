@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using Priority_Queue;
+using LightObject;
 
 public class PlayerAim : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class PlayerAim : MonoBehaviour
     }
 
     public float maxShootRange = 1.5f;
+    public float maxAbsorbRange = 1f;
     
     private Transform _aimTransform;
     private Transform _fireStartPosition;
@@ -90,46 +93,85 @@ public class PlayerAim : MonoBehaviour
         }
     }
 
-    private void HandleAbsorbing()
+    private bool first, second, third = false;
+     private void HandleAbsorbing()
+     {
+         if (!_isClicking && Input.GetMouseButtonDown(1))
+         {
+             Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+             // 如果鼠标右键在player范围外，则不执行吸收光量的操作
+             if ((transform.position - mousePosition).sqrMagnitude > maxShootRange * maxShootRange)
+             {
+                 Debug.Log("Not in range");
+                 return;
+             }
+             // 如果player已经满血，则不执行吸收光量的操作
+             if (_player.IsFullHP())
+             {
+                 Debug.Log("Player has full hp");
+                 return;
+             }
+             _totalDownTime = 0f;
+             _isClicking = true;
+         }
+         
+         // NEED TO CHANGE
+         if (_isClicking && Input.GetMouseButton(1))
+         {
+             _totalDownTime += Time.deltaTime;
+             if (_totalDownTime >= 0.5 && _totalDownTime < 1 && !first)
+             {
+                 HandleAbsorbingHelper(1); first = true;
+             } else if (_totalDownTime >= 1 && _totalDownTime < 2 && !second)
+             {
+                 HandleAbsorbingHelper(1); second = true;
+             } else if (_totalDownTime >= 2 && !third)
+             {
+                 HandleAbsorbingHelper(1); third = true;
+             }
+         }
+         
+         if (_isClicking && Input.GetMouseButtonUp(1))
+         {
+             print(_totalDownTime);
+             _totalDownTime = 0f;
+             _isClicking = false;
+             first = second = third = false;
+         }
+     }
+     
+    private void HandleAbsorbingHelper(int amount)
     {
-        if (!_isClicking && Input.GetMouseButtonDown(1))
+        // Get current mouse position
+        LightObject.LightObject res = FindNearestLightObj();
+        if (res)
         {
-            Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
-            if ((transform.position - mousePosition).sqrMagnitude > maxShootRange * maxShootRange)
-            {
-                Debug.Log("Not in range");
-                return;
-            }
-            _totalDownTime = 0f;
-            _isClicking = true;
-        }
-
-        if (_isClicking && Input.GetMouseButton(1))
-        {
-            _totalDownTime += Time.deltaTime;
-            HandleAbsorbingHelper();
-        }
-
-        if (_isClicking && Input.GetMouseButtonUp(1))
-        {
-            _isClicking = false;
+            res.LoseLight(amount);
+            _player.AddHP(amount*10);
         }
     }
 
-    private void HandleAbsorbingHelper()
+    private LightObject.LightObject FindNearestLightObj()
     {
-        StartCoroutine(AbsorbLightNumerator());
+        float distance = Single.MaxValue;
+        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+        Collider2D[] colliderArray = Physics2D.OverlapCircleAll(mousePosition, maxAbsorbRange);
+        LightObject.LightObject res = null;
+        foreach (Collider2D collider2D in colliderArray)
+        {
+            if (collider2D.TryGetComponent<LightObject.LightObject>(out LightObject.LightObject lb))
+            {
+                float tmp = (lb.transform.position - mousePosition).magnitude;
+                if ( tmp < distance)
+                {
+                    res = lb;
+                    distance = tmp;
+                }
+            }
+        }
+        return res;
     }
     
-    private IEnumerator AbsorbLightNumerator()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f);
-            if (!_isClicking)
-                break;
-        }  
-    }
 
     private int Time2LightLevel()
     {
@@ -141,4 +183,5 @@ public class PlayerAim : MonoBehaviour
              return 2;
         return 3;
     }
+    
 }

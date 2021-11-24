@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     private int jumpNum = 0;
     private int Light = 0;
     private float xVelocity;
+
+    public const float maxHp = 100;
 
 
     public Text textLife;
@@ -75,7 +78,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("WalkablePlatform"))
         {
             jumpNum = 1;
         }
@@ -123,5 +126,10 @@ public class Player : MonoBehaviour
     public void AddHP(int lightBallLevel)
     {
         hp += lightBallLevel;
+    }
+
+    public bool IsFullHP()
+    {
+        return Math.Abs(hp - maxHp) <= 0.0001f;
     }
 }
