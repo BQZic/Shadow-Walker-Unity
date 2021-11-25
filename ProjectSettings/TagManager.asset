@@ -9,6 +9,7 @@ TagManager:
   - LightBall
   - Light
   - WalkablePlatform
+  - Trap
   layers:
   - Default
   - TransparentFX

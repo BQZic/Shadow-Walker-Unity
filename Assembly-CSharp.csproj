@@ -57,12 +57,14 @@
      <Compile Include="Assets\CodeMonkey\Utils\World_Mesh.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\IFixedSizePriorityQueue.cs" />
      <Compile Include="Assets\Scripts\LightObject\LightBall.cs" />
+     <Compile Include="Assets\Scripts\Platform\BreakablePlatform.cs" />
      <Compile Include="Assets\Scripts\GameAssets.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\FastPriorityQueue.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
      <Compile Include="Assets\Scripts\LightObject\LightObject.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollow.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\World_Bar.cs" />
+     <Compile Include="Assets\Scripts\Platform\Teleport.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\StablePriorityQueue.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\IPriorityQueue.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionUpdater.cs" />
@@ -94,8 +96,7 @@
      <Compile Include="Assets\Scripts\Priority Queue\SimplePriorityQueue.cs" />
      <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
-     <Compile Include="Assets\Scripts\Teleport.cs" />
-     <Compile Include="Assets\BreakablePlatform.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerLife.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
