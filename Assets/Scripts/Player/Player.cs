@@ -1,135 +1,126 @@
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+
+public partial class Player : MonoBehaviour
 {
-    Rigidbody2D rb;
+    [Header("Movement")]
+    public CharacterController2d controller;
+    public float runSpeed = 40f;
 
-    public float speed = 10f;
-    public float jumpingHeight = 8f;
-    public float hp = 100;
-    public float minusHp = 0.01f;
-    //public float lightBallLevel = 1f;
-    private int jumpNum = 0;
-    private int Light = 0;
-    private float xVelocity;
+    [Header("Health")] 
+    public float maxHP = 100f;
+    public float minusHP = 1f;
 
-    public const float maxHp = 100;
-
-
-    public Text textLife;
-
+    [Header("Display")] public Text textHP;
+    
+    // Health
+    private float _currentHP = 100f;
+    private bool death = false;
+    private bool _inLight = false;
+    
+    // Movement
+    private bool _jump = false;
+    private float _horizontalMove = 0f;
+    
+    // Components
     private Animator _animator;
-    void Start()
+    private Rigidbody2D _rb2d;
+    
+    
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        xVelocity = Input.GetAxis("Horizontal");
-        if (xVelocity >= 0.01f)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-        else if (xVelocity <= 0.01f)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
-
-        if (Light == 0)
-        {
-            if (xVelocity != 0)
-            {
-                hp -= minusHp;
-            }
-        }
-        Movement();
-        textLife.text = hp.ToString("00");
-
-        // 新加：
         CheckDeath();
+        if (death) return;
+        
+        Movement();
+        CheckInLight();
+        textHP.text = _currentHP.ToString("00");
     }
 
-    void Movement()
+    private void FixedUpdate()
     {
-        rb.velocity = new Vector2(xVelocity * speed, rb.velocity.y);
-        if (jumpNum == 1)
-        {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpingHeight);
-                jumpNum = 0;
-            }
-        }
-        if (hp > 100)
-        {
-            hp = 100;
-        }
-
-        // 新加：TODO - 由于跑步动画过长 需要中途停止？
-        _animator.SetBool("isRun", rb.velocity != Vector2.zero);
+        controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _jump);
+        _jump = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void Movement()
     {
-        if (other.gameObject.CompareTag("WalkablePlatform"))
-        {
-            jumpNum = 1;
-        }
-        if (other.gameObject.CompareTag("Damage"))
-        {
-            hp -= 20;
-            if (hp < 0)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
+        _horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
+        if (!_jump)
+        {
+            if (_horizontalMove == 0f)
+                _animator.SetBool("isRun", false);
+            else _animator.SetBool("isRun", true);
+        }
+        
+        if (Input.GetButtonDown("Jump"))
+        {
+            _jump = true;
+            _animator.SetTrigger("Jump");
+        } else _animator.ResetTrigger("Jump");
+        
+        _animator.SetFloat("yVelocity", _rb2d.velocity.y);
+    }
+    
+    #region Health
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Light"))
-        {
-            Light = 1;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Light"))
-        {
-            Light = 0;
-        }
-    }
-    // 新加：
     private void CheckDeath()
     {
-        if (hp <= 0) Destroy(gameObject);
+        if (_currentHP > 0f) return;
+        death = true;
+        StartCoroutine(PlayDeath());
+        //_animator.SetTrigger("isDead");
     }
 
-    public void TakeDamage(int damage)
+    private IEnumerator PlayDeath()
     {
-        hp -= damage;
+        _animator.SetTrigger("isDead");
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
-    public float GetHP()
+    private void CheckInLight()
     {
-        return hp;
+        if (!_inLight)
+        {
+            _currentHP -= minusHP * Time.deltaTime;
+        }
     }
 
-    public void AddHP(int lightBallLevel)
+    public void TakeDamage(float damage, string from = null)
     {
-        hp += lightBallLevel;
+        if (from != null)
+        {
+            _animator.SetTrigger("isHit");
+        }
+        _currentHP -= damage;
     }
 
-    public bool IsFullHP()
+    public void RecoverHealth(bool max = false)
     {
-        return Math.Abs(hp - maxHp) <= 0.0001f;
+        if (max) _currentHP = maxHP;
     }
+    public void RecoverHealth(float value = 0)
+    {
+        _currentHP += value;
+        if (_currentHP > maxHP)
+            _currentHP = maxHP;
+    }
+
+    public bool isFullHP()
+    {
+        return _currentHP >= maxHP;
+    }
+    #endregion
 }

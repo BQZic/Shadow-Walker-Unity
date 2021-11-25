@@ -11,8 +11,12 @@ namespace Platform
 
         [SerializeField] private float speed = 1f;
 
+        public bool movable = true;
+
         private void Update()
         {
+            // if (!movable) return;
+            
             if (Vector3.Distance(waypoints[_currentWaypointIndex].transform.position, transform.position) < .1f)
             {
                 _currentWaypointIndex++;

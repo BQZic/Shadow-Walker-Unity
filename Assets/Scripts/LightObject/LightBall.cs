@@ -47,7 +47,7 @@ namespace LightObject
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                player.AddHP(currentLight * 10);
+                player.RecoverHealth(currentLight * 10);
                 Destroy(gameObject);
             }
         }

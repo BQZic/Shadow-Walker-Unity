@@ -86,7 +86,7 @@ public class PlayerAim : MonoBehaviour
             
             print("Pressed left mouse button for " + _totalDownTime + "s");
             
-            _player.TakeDamage(Time2LightLevel()*10);
+            _player.TakeDamage((float) Time2LightLevel()*10);
             _playerAnimator.SetBool("isShooting", false);
             _isClicking = false;
             _totalDownTime = 0f;
@@ -106,7 +106,7 @@ public class PlayerAim : MonoBehaviour
                  return;
              }
              // 如果player已经满血，则不执行吸收光量的操作
-             if (_player.IsFullHP())
+             if (_player.isFullHP())
              {
                  Debug.Log("Player has full hp");
                  return;
@@ -147,7 +147,7 @@ public class PlayerAim : MonoBehaviour
         if (res)
         {
             res.LoseLight(amount);
-            _player.AddHP(amount*10);
+            _player.RecoverHealth(amount * 10);
         }
     }
 
