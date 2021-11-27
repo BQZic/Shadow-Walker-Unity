@@ -11,21 +11,35 @@ namespace Platform
 
         [SerializeField] private float speed = 1f;
 
-        public bool movable = true;
+        public bool autoMove = true;
+
+        public bool oneWayMove = false;
+
+        public bool frozen = false;
 
         private void Update()
         {
-            // if (!movable) return;
+            if (frozen) return;
             
-            if (Vector3.Distance(waypoints[_currentWaypointIndex].transform.position, transform.position) < .1f)
-            {
-                _currentWaypointIndex++;
-                if (_currentWaypointIndex >= waypoints.Length) _currentWaypointIndex = 0;
+            if (oneWayMove) {
+                transform.position = Vector2.MoveTowards(transform.position,
+                    waypoints[1].transform.position, Time.deltaTime * speed);
             }
 
-            transform.position = Vector2.MoveTowards(transform.position,
-                waypoints[_currentWaypointIndex].transform.position, Time.deltaTime * speed);
+            if (autoMove && !oneWayMove) {
+                if ((waypoints[_currentWaypointIndex].transform.position - transform.position).sqrMagnitude < .1f * .1f) 
+                {
+                    _currentWaypointIndex++;
+                    if (_currentWaypointIndex >= waypoints.Length) _currentWaypointIndex = 0;
+                }
+
+                transform.position = Vector2.MoveTowards(transform.position,
+                    waypoints[_currentWaypointIndex].transform.position, Time.deltaTime * speed);
+            }
+            
+            
         }
+
     }
 }
 
