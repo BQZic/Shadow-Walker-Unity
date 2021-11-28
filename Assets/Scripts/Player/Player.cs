@@ -64,7 +64,7 @@ public partial class Player : MonoBehaviour
             else _animator.SetBool("isRun", true);
         }
         
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && controller.isGrounded())
         {
             _jump = true;
             _animator.SetTrigger("Jump");
