@@ -21,6 +21,7 @@ public partial class Player : MonoBehaviour
     private float _currentHP = 100f;
     private bool death = false;
     private bool _inLight = false;
+    private bool _inWater = false;
     
     // Movement
     private bool _jump = false;
@@ -39,18 +40,27 @@ public partial class Player : MonoBehaviour
 
     private void Update()
     {
+        textHP.text = _currentHP.ToString("00");
         CheckDeath();
         if (death) return;
+        if (_inWater) {
+             _currentHP -= 10 * Time.deltaTime;
+        }
+        CheckInLight();
         
         Movement();
-        CheckInLight();
-        textHP.text = _currentHP.ToString("00");
     }
 
     private void FixedUpdate()
     {
         controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _jump);
         _jump = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Water")) {
+            _inWater = true;
+        }
     }
 
     private void Movement()

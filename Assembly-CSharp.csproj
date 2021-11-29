@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\LightObject\LightObject.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollow.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\World_Bar.cs" />
+     <Compile Include="Assets\Scripts\Bats.cs" />
      <Compile Include="Assets\Scripts\Platform\Teleport.cs" />
      <Compile Include="Assets\Scripts\LightObject\LightIteractableObj.cs" />
      <Compile Include="Assets\Scripts\Priority Queue\StablePriorityQueue.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\Scripts\old\Testing.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
      <Compile Include="Assets\Scripts\old\Bracelet.cs" />
+     <Compile Include="Assets\Scripts\Parallaxing.cs" />
      <Compile Include="Assets\Scripts\CameraFollower.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_Sprite.cs" />
      <Compile Include="Assets\Scripts\Platform\InteractableObj.cs" />
@@ -86,8 +88,6 @@
      <Compile Include="Assets\Scripts\Priority Queue\SimplePriorityQueue.cs" />
      <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
-     <Compile Include="Assets\Bats.cs" />
-     <Compile Include="Assets\Parallaxing.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
