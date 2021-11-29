@@ -72,6 +72,11 @@ public partial class Player : MonoBehaviour
         
         _animator.SetFloat("yVelocity", _rb2d.velocity.y);
     }
+
+    public void SetInLight(bool inLight) 
+    {
+        _inLight = inLight;
+    }
     
     #region Health
 
@@ -95,6 +100,9 @@ public partial class Player : MonoBehaviour
         if (!_inLight)
         {
             _currentHP -= minusHP * Time.deltaTime;
+        } else if (_inLight && _currentHP <= maxHP)
+        {
+            _currentHP += minusHP * Time.deltaTime;
         }
     }
 
@@ -113,7 +121,10 @@ public partial class Player : MonoBehaviour
     }
     public void RecoverHealth(float value = 0)
     {
-        _currentHP += value;
+        if (value <= 0)
+            _currentHP += minusHP * Time.deltaTime;
+        else
+            _currentHP += value;
         if (_currentHP > maxHP)
             _currentHP = maxHP;
     }

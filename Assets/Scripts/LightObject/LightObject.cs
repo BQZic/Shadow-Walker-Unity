@@ -10,6 +10,18 @@ namespace LightObject
         [SerializeField] protected int minLight = 0;
         [SerializeField] protected int lightStep = 1;
 
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player")) {
+                other.GetComponent<Player>().SetInLight(true);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other) {
+            if (other.gameObject.CompareTag("Player")) {
+                other.GetComponent<Player>().SetInLight(false);
+            }
+        }
 
         
         public int GetMaxLight()
