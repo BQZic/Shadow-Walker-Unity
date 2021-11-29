@@ -21,7 +21,7 @@ TagManager:
   - Background
   - Foreground
   - Ground
-  - 
+  - Foreground_Nolight
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2102557841
+    locked: 0
+  - name: Foreground_NoLight
+    uniqueID: 2799950689
     locked: 0
   - name: UI
     uniqueID: 2353114551

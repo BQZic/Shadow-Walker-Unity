@@ -8,6 +8,8 @@ namespace Platform {
     {
         private bool _hasCollided;
         private string _labelText = "";
+        
+        public bool autoInteract = false;
 
         [Tooltip("Press E to interact with ... ?")]
         public GameObject interactableObj;
@@ -16,30 +18,50 @@ namespace Platform {
         public Sprite[] onoff;
 
         private void Update() {
-            if (_hasCollided && Input.GetButtonDown("Interact")) {
-                if (TryGetComponent<Teleport>(out Teleport t)) 
+            if (autoInteract && _hasCollided) {
+                if (interactableObj != null && 
+                    interactableObj.TryGetComponent<WaypointFollower>(out WaypointFollower wp)) 
+            {
+                wp.frozen = false;
+                if (TryGetComponent<Light2D>(out Light2D light))  
                 {
-                    t.StartTeleportation();
-                } 
-                else if (interactableObj != null && 
-                        interactableObj.TryGetComponent<WaypointFollower>(out WaypointFollower wp)) 
-                {
-                    wp.frozen = false;
-                    if (TryGetComponent<Light2D>(out Light2D light))  
-                    {
-                        light.enabled = true;
-                    }
+                    light.enabled = true;
+                }
 
-                    if (transform.Find("Sprite").TryGetComponent<SpriteRenderer>(out SpriteRenderer sr)) 
-                    {
-                        sr.sprite = onoff[1];
-                    }
+                if (transform.Find("Sprite").TryGetComponent<SpriteRenderer>(out SpriteRenderer sr)) 
+                {
+                    sr.sprite = onoff[1];
+                }
+            }
+            }
+            if (!autoInteract && _hasCollided && Input.GetButtonDown("Interact")) {
+                InteractWith();
+            }
+        }
+
+        private void InteractWith() {
+            if (TryGetComponent<Teleport>(out Teleport t)) 
+            {
+                t.StartTeleportation();
+            } 
+            else if (interactableObj != null && 
+                    interactableObj.TryGetComponent<WaypointFollower>(out WaypointFollower wp)) 
+            {
+                wp.frozen = false;
+                if (TryGetComponent<Light2D>(out Light2D light))  
+                {
+                    light.enabled = true;
+                }
+
+                if (transform.Find("Sprite").TryGetComponent<SpriteRenderer>(out SpriteRenderer sr)) 
+                {
+                    sr.sprite = onoff[1];
                 }
             }
         }
 
         private void OnGUI() {
-            if (_hasCollided) {
+            if (_hasCollided && !autoInteract) {
                 GUI.Box(new Rect(140,Screen.height-50,Screen.width-300,120),(_labelText));
             }    
         }
@@ -48,7 +70,6 @@ namespace Platform {
             if (other.gameObject.CompareTag("Player")) {
                 _hasCollided = true;
                 _labelText = "Hit E to interact";    
-                
             }    
         }
 
