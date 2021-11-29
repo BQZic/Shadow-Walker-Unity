@@ -56,6 +56,9 @@ TagManager:
   - name: Player
     uniqueID: 2102557841
     locked: 0
+  - name: LightBlocker
+    uniqueID: 1997592607
+    locked: 0
   - name: Foreground_NoLight
     uniqueID: 2799950689
     locked: 0
