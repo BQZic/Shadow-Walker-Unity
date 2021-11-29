@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Platform {
     public class InteractableObj : MonoBehaviour
@@ -11,13 +12,28 @@ namespace Platform {
         [Tooltip("Press E to interact with ... ?")]
         public GameObject interactableObj;
 
+        [Tooltip("1 is on, 0 is off")]
+        public Sprite[] onoff;
+
         private void Update() {
             if (_hasCollided && Input.GetButtonDown("Interact")) {
-                if (TryGetComponent<Teleport>(out Teleport t)) {
+                if (TryGetComponent<Teleport>(out Teleport t)) 
+                {
                     t.StartTeleportation();
-                } else if (interactableObj != null && 
-                        interactableObj.TryGetComponent<WaypointFollower>(out WaypointFollower wp)) {
+                } 
+                else if (interactableObj != null && 
+                        interactableObj.TryGetComponent<WaypointFollower>(out WaypointFollower wp)) 
+                {
                     wp.frozen = false;
+                    if (TryGetComponent<Light2D>(out Light2D light))  
+                    {
+                        light.enabled = true;
+                    }
+
+                    if (transform.Find("Sprite").TryGetComponent<SpriteRenderer>(out SpriteRenderer sr)) 
+                    {
+                        sr.sprite = onoff[1];
+                    }
                 }
             }
         }
