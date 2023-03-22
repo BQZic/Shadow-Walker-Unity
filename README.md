@@ -1,21 +1,19 @@
-# Light Demo
+# Shadow Walker
 
-## TODO List
+A 2D puzzle-platform game built using Unity and C#. A game of light and shadow. Demo video can be found [here](https://www.youtube.com/watch?v=hAaSOzBULIs).
 
-**11/7/2021**
+![aa](./src/shadow_walker_main.jpg)
 
-- [x] 角色移动
-- [x] 手镯放出光源功能
-- [ ] 角色动画
-  - [x] 移动
-  - [ ] 待解决问题1：动画过长，导致切换时需要等待上一个动画播完，是否直接切断？
-  - [ ] 待解决问题2：翻转
-- [ ] 手镯吸收光源功能
-- [ ] 角色因为黑暗降低血量
-  - [ ] 血量这部分最高改成10了 - 需要修改
-- [ ] 角色碰到光源后回收并恢复消耗的光量
-- [ ] 光量转移 - 疑问：如果这是碰到就进行转移，那么碰到光球的时候是直接吸收全部，还是逐步转移？
+## Core Mechanism
 
-**11/10/2021**
-  - [x] 翻转
-- [x] 角色因为黑暗降低血量
+Light is the key component of our game. 
+
+By capturing, moving and placing **light**, players can realize effects such as creating shadows, illuminating the environment, and controlling machinery to solve puzzles. 
+
+If the character stays in the dark/shadow for too long, and his entire body is immersed in the darkness, he will be injured. He will die if he continues to remain in the current state after certain amount of time. 
+
+## Setup
+
+- Developed on **Unity 2020.3.21f1c1**
+- Used CodeMonkey packages [link](https://unitycodemonkey.com/utils.php)
+
